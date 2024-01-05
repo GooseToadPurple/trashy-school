@@ -1,0 +1,20 @@
+{
+  "name": "my-k-game",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "parcel src/index.html -p 8000",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "images": "^3.2.4",
+    "kaboom": "^3000.1.17"
+  },
+  "description": "",
+  "alias": {
+    "kaboom": "./node_modules/kaboom/dist/kaboom.mjs"
+  }
+}
