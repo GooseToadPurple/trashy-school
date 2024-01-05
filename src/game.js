@@ -6,6 +6,7 @@ import doorImage from "../sprites/door.png";
 import deskImage from "../sprites/desk.png";
 import chairImage from "../sprites/chair.png";
 import chairSwivelImage from "../sprites/chair_swivel.png";
+import compImage from "../sprites/comp.png";
 import beanImage from "../sprites/bean.png";
 import plImage from "../sprites/pennylee.png";
 import ssImage from "../sprites/sophiasmith.png";
@@ -24,23 +25,26 @@ loadSprite("carpet", carpetImage)
 loadSprite("desk", deskImage)
 loadSprite("chair", chairImage)
 loadSprite("chairSwivel", chairSwivelImage)
+loadSprite("comp", compImage)
 loadSprite("door", doorImage)
 loadSprite("bean", beanImage)
 loadSprite("pennylee", plImage)
 loadSprite("sophiasmith", ssImage)
 loadSprite("princessparis", rpImage)
 
+let charismaPoints = 0;
+
 scene("main", (levelIdx) => {
   const levels = [
     [
       "---------",
+      "-000_000-",
+      "-0000000-",
+      "-000c0001",
       "-0000000-",
       "-0000000-",
-      "-00000001",
+      "-0000000-",
       "20000000-",
-      "-0000000-",
-      "-0000000-",
-      "-0000000-",
       "-00000003",
       "-0000000-",
       "-0000000-",
@@ -54,12 +58,12 @@ scene("main", (levelIdx) => {
     ],
     [
       "---------",
-      "-0000P00-",
-      "-00dddd0-",
-      "|0000000-",
-      "-0c0c0c0-",
+      "-000wR00-",
+      "-00rdd00-",
+      "-00000c0-",
       "-0000000-",
-      "-0c0p0c0-",
+      "|0c0c0c0-",
+      "-0000000-",
       "---------",
     ],
     [
@@ -74,12 +78,12 @@ scene("main", (levelIdx) => {
     ],
     [
       "---------",
-      "-000wR00-",
-      "-00rdd00-",
-      "-00000c0-",
+      "-0000P00-",
+      "-00dddd0-",
+      "|0000000-",
+      "-0c0c0c0-",
       "-0000000-",
-      "|0c0c0c0-",
-      "-0000000-",
+      "-0c0p0c0-",
       "---------",
     ],
   ]
@@ -114,6 +118,13 @@ scene("main", (levelIdx) => {
         area(),
         "chair",
         ],
+      "_": () => [
+        sprite("comp"),
+        area(),
+        body({ isStatic: true }),
+        "computer",
+        { msg: "Press ENTER to gain charisma points!" },
+        ],
       "|": () => [
         sprite("door"),
         area(),
@@ -121,6 +132,8 @@ scene("main", (levelIdx) => {
         "door",
         { idx: 0 },
         ],
+
+
       "1": () => [
         sprite("door"),
         area(),
@@ -128,19 +141,21 @@ scene("main", (levelIdx) => {
         "door",
         { idx: 1 },
         ],
-      "P": () => [
-        sprite("pennylee"),
+      "R": () => [
+        sprite("princessparis"),
         area(),
         body({ isStatic: true }),
         "character",
-        { msg: "Sit down! Do what you're meant to be doing." },
+        { msg: "Oh my God! It's been so long!" },
       ],
-      "p": () => [
+      "r": () => [
         sprite("chair"),
         area(),
         "special_chair",
-        { vid: plVid },
+        { vid: rpVid, timestamp1: 6, timestamp2: 270, thresh1: 0, irrMsg: "...", thresh2: 30 },
         ],
+
+
       "2": () => [
         sprite("door"),
         area(),
@@ -159,8 +174,10 @@ scene("main", (levelIdx) => {
         sprite("chair"),
         area(),
         "special_chair",
-        { vid: ssVid },
+        { vid: ssVid, timestamp1: 4, timestamp2: 388, thresh1: 20, irrMsg: "I'm busy right now. (you need 20 charisma)", thresh2: 50 },
         ],
+
+
       "3": () => [
         sprite("door"),
         area(),
@@ -168,21 +185,21 @@ scene("main", (levelIdx) => {
         "door",
         { idx: 3 },
         ],
-      "R": () => [
-        sprite("princessparis"),
+      "P": () => [
+        sprite("pennylee"),
         area(),
         body({ isStatic: true }),
         "character",
-        { msg: "Oh my God! It's been so long!" },
+        { msg: "Sit down! Do what you're meant to be doing." },
       ],
-      "r": () => [
+      "p": () => [
         sprite("chair"),
         area(),
         "special_chair",
-        { vid: rpVid },
-        ],
-      }
+        { vid: plVid, timestamp1: 7, timestamp2: 286, thresh1: 40, irrMsg: "Get on with your work! (you need 40 charisma)", thresh2: 70 },
+      ],
 
+    }
   })
 
   const player = add([
@@ -197,26 +214,56 @@ scene("main", (levelIdx) => {
   ])
 
   let canMove = true;
+  let atComp = false;
 
   player.onCollide("special_chair", (ch) => {
 
     canMove = false;
 
-    const videoEl = document.getElementById("vPlayer");
-    videoEl.src = ch.vid;
-    videoEl.style.display = "block"
-  
-    onKeyDown("escape", () => {
-      videoEl.style.display = "none"
-      videoEl.pause()
-      canMove = true;
-    })
+    if (charismaPoints < ch.thresh1) {
+
+      dialog.text = ch.irrMsg;
+
+    } else {
+
+      const videoEl = document.getElementById("vPlayer");
+    
+      if (ch.timestamp2 && charismaPoints >= ch.thresh2) {
+        videoEl.src = ch.vid + "#t=" + ch.timestamp2;
+      } else if (ch.timestamp1) {
+        videoEl.src = ch.vid  + "#t=" + ch.timestamp1;;
+      } else {
+        videoEl.src = ch.vid;
+      }
+      videoEl.style.display = "block"
+    
+      onKeyDown("escape", () => {
+        videoEl.style.display = "none"
+        videoEl.pause()
+        canMove = true;
+      })
+
+    }
 
   })
 
   player.onCollide("character", (ch) => {
     canMove = false;
     dialog.text = ch.msg
+  })
+
+  // charisma system
+  onKeyPress("enter", () => {
+    if (atComp) {
+        charismaPoints++;
+        dialog.text = `Charisma Points: ${charismaPoints}`
+    }
+  })
+
+  player.onCollide("computer", (c) => {
+    canMove = false;
+    atComp = true;
+    dialog.text = c.msg
   })
 
   player.onCollide("door", (d) => {
@@ -250,6 +297,7 @@ scene("main", (levelIdx) => {
   onKeyDown("escape", () => {
     dialog.text = ""
     canMove = true;
+    atComp = false;
   })
 
 })
