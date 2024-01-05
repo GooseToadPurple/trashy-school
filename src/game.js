@@ -11,10 +11,13 @@ import beanImage from "../sprites/bean.png";
 import plImage from "../sprites/pennylee.png";
 import ssImage from "../sprites/sophiasmith.png";
 import rpImage from "../sprites/princessparis.png";
+import glImage from "../sprites/georgielyall.png";
 
 import plVid from "../videos/plVid.mp4"; // https://spankbang.com/54tpn/video/tits
 import ssVid from "../videos/ssVid.mp4"; // https://spankbang.com/5l4j8/video/teachers+titties
 import rpVid from "../videos/rpVid.mp4"; // https://spankbang.com/5othu/video/i+love+being+s+slut
+import glVid from "../videos/glVid.mp4"; // https://spankbang.com/6c7dn/video/my+favourite+british+girl+joi
+
 
 kaboom({
   background: [105, 105, 105]
@@ -31,6 +34,7 @@ loadSprite("bean", beanImage)
 loadSprite("pennylee", plImage)
 loadSprite("sophiasmith", ssImage)
 loadSprite("princessparis", rpImage)
+loadSprite("georgielyall", glImage)
 
 let charismaPoints = 0;
 
@@ -48,7 +52,7 @@ scene("main", (levelIdx) => {
       "-00000003",
       "-0000000-",
       "-0000000-",
-      "-0000000-",
+      "40000000-",
       "-0000000-",
       "-0000000-",
       "-0000000-",
@@ -84,6 +88,16 @@ scene("main", (levelIdx) => {
       "-0c0c0c0-",
       "-0000000-",
       "-0c0p0c0-",
+      "---------",
+    ],
+    [
+      "---------",
+      "-000G000-",
+      "-00ddd00-",
+      "-0c0g0c0-",
+      "-0000000|",
+      "-0c0c0c0-",
+      "-0000000-",
       "---------",
     ],
   ]
@@ -174,7 +188,7 @@ scene("main", (levelIdx) => {
         sprite("chair"),
         area(),
         "special_chair",
-        { vid: ssVid, timestamp1: 4, timestamp2: 388, thresh1: 20, irrMsg: "I'm busy right now. (you need 20 charisma)", thresh2: 50 },
+        { vid: ssVid, timestamp1: 5, timestamp2: 388, thresh1: 20, irrMsg: "I'm busy right now. (you need 20 charisma)", thresh2: 50 },
         ],
 
 
@@ -197,6 +211,27 @@ scene("main", (levelIdx) => {
         area(),
         "special_chair",
         { vid: plVid, timestamp1: 7, timestamp2: 286, thresh1: 40, irrMsg: "Get on with your work! (you need 40 charisma)", thresh2: 70 },
+      ],
+
+      "4": () => [
+        sprite("door"),
+        area(),
+        body({ isStatic: true }),
+        "door",
+        { idx: 4 },
+        ],
+      "G": () => [
+        sprite("georgielyall"),
+        area(),
+        body({ isStatic: true }),
+        "character",
+        { msg: "If you come back later I can help you with your essay." },
+      ],
+      "g": () => [
+        sprite("chair"),
+        area(),
+        "special_chair",
+        { vid: glVid, timestamp1: 5, timestamp2: 364, thresh1: 50, irrMsg: "Sorry, I'm too busy to help you. (you need 50 charisma)", thresh2: 80 },
       ],
 
     }
