@@ -16,6 +16,9 @@ import glImage from "../sprites/georgielyall.png";
 import llImage from "../sprites/lucylauren.png";
 import lgImage from "../sprites/lucygresty.png";
 import ajImage from "../sprites/axajay.png";
+import sbImage from "../sprites/sapphireblue.png";
+import jrImage from "../sprites/jayerose.png";
+import ftImage from "../sprites/fayetaylor.png";
 
 import plVid from "../videos/plVid.mp4"; // https://spankbang.com/54tpn/video/tits
 import ssVid from "../videos/ssVid.mp4"; // https://spankbang.com/5l4j8/video/teachers+titties
@@ -23,7 +26,12 @@ import rpVid from "../videos/rpVid.mp4"; // https://spankbang.com/5othu/video/i+
 import glVid from "../videos/glVid.mp4"; // https://spankbang.com/6c7dn/video/my+favourite+british+girl+joi
 import llVid from "../videos/llVid.mp4"; // https://spankbang.com/5hxsf-eh1qsc/playlist/downblouse+wankitnow
 import lgVid from "../videos/lgVid.mp4"; // https://spankbang.com/4h1z5/video/hot+for+teacher+joi
-import ajVid from "../videos/ajVid.mp4";// https://spankbang.com/3wgav-8f79dv/playlist/win+teacher
+import ajVid from "../videos/ajVid.mp4"; // https://spankbang.com/3wgav-8f79dv/playlist/win+teacher
+import sbVid from "../videos/sbVid.mp4"; // https://spankbang.com/5bicn/video/impress+me
+import jrVid from "../videos/jrVid.mp4"; // https://spankbang.com/6wrs1/video/wank+class+pt1
+import ftVid from "../videos/ftVid.mp4"; // https://spankbang.com/60w2y/video/sdfsfsfs
+
+
 
 
 kaboom({
@@ -46,6 +54,9 @@ loadSprite("georgielyall", glImage)
 loadSprite("lucylauren", llImage)
 loadSprite("lucygresty", lgImage)
 loadSprite("axajay", ajImage)
+loadSprite("sapphireblue", sbImage)
+loadSprite("jayerose", jrImage)
+loadSprite("fayetaylor", ftImage)
 
 let charismaPoints = 0;
 
@@ -66,9 +77,9 @@ scene("main", (levelIdx) => {
       "40000000-",
       "-00000005",
       "-0000000-",
-      "-0000000-",
-      "-0000000-",
-      "-0000000-",
+      "α0000000-",
+      "-00000008",
+      "90000000-",
       "---------",
     ],
     [
@@ -133,6 +144,34 @@ scene("main", (levelIdx) => {
       "-0000000-",
       "-0c0c0c0-",
       "-0000000-",
+      "---------",
+    ],
+    [
+      "---------------",
+      "-dd000B0000000-",
+      "-00000dd000000-",
+      "|00c0000b000c0-",
+      "-0000c0000c000-",
+      "---------------",
+    ],
+    [
+      "---------",
+      "-dvJ0000-",
+      "-d000dd0-",
+      "-00j0v00-",
+      "-0000000-",
+      "-0v0v0v0-",
+      "-0000000|",
+      "---------",
+    ],
+    [
+      "---------",
+      "-0000vvv-",
+      "-dd00000|",
+      "-000000F-",
+      "-00v0f0d-",
+      "-000000d-",
+      "-v00v00v-",
       "---------",
     ],
   ]
@@ -337,7 +376,70 @@ scene("main", (levelIdx) => {
         sprite("chair"),
         area(),
         "special_chair",
-        { vid: ajVid, timestamp1: 4.5, timestamp2: 478, thresh1: 9, irrMsg: "You should go to the headmistress. (you need 90 charisma)", thresh2: 12 },
+        { vid: ajVid, timestamp1: 4.5, timestamp2: 478, thresh1: 90, irrMsg: "You should go to the headmistress. (you need 90 charisma)", thresh2: 120 },
+      ],
+
+      "8": () => [
+        sprite("door"),
+        area(),
+        body({ isStatic: true }),
+        "door",
+        { idx: 8 },
+        ],
+      "B": () => [
+        sprite("sapphireblue"),
+        area(),
+        body({ isStatic: true }),
+        "character",
+        { msg: "I have to have rules, I'm sorry." },
+      ],
+      "b": () => [
+        sprite("chair"),
+        area(),
+        "special_chair",
+        { vid: sbVid, timestamp1: 4.5, timestamp2: 299, thresh1: 50, irrMsg: "Please do your work in silence (you need 50 charisma)", thresh2: 80 },
+      ],
+
+      "9": () => [
+        sprite("door"),
+        area(),
+        body({ isStatic: true }),
+        "door",
+        { idx: 9 },
+        ],
+      "J": () => [
+        sprite("jayerose"),
+        area(),
+        body({ isStatic: true }),
+        "character",
+        { msg: "Congratulations on your results!" },
+      ],
+      "j": () => [
+        sprite("chairBlue"),
+        area(),
+        "special_chair",
+        { vid: jrVid, timestamp1: 4.6, timestamp2: 477.5, thresh1: 20, irrMsg: "Well done! You can go now. (you need 20 charisma)", thresh2: 50 },
+      ],
+
+      "α": () => [
+        sprite("door"),
+        area(),
+        body({ isStatic: true }),
+        "door",
+        { idx: 10 },
+        ],
+      "F": () => [
+        sprite("fayetaylor"),
+        area(),
+        body({ isStatic: true }),
+        "character",
+        { msg: "I asked you to tidy!" },
+      ],
+      "f": () => [
+        sprite("chairBlue"),
+        area(),
+        "special_chair",
+        { vid: ftVid, timestamp1: 8, timestamp2: 424, thresh1: 60, irrMsg: "All I asked was for you to tidy! (you need 60 charisma)", thresh2: 90 },
       ],
     }
   })
