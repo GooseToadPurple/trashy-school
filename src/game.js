@@ -19,6 +19,9 @@ import ajImage from "../sprites/axajay.png";
 import sbImage from "../sprites/sapphireblue.png";
 import jrImage from "../sprites/jayerose.png";
 import ftImage from "../sprites/fayetaylor.png";
+import viImage from "../sprites/violet.png";
+import caImage from "../sprites/charlieatwell.png";
+import ivImage from "../sprites/ivy.png";
 
 import plVid from "../videos/plVid.mp4"; // https://spankbang.com/54tpn/video/tits
 import ssVid from "../videos/ssVid.mp4"; // https://spankbang.com/5l4j8/video/teachers+titties
@@ -30,9 +33,9 @@ import ajVid from "../videos/ajVid.mp4"; // https://spankbang.com/3wgav-8f79dv/p
 import sbVid from "../videos/sbVid.mp4"; // https://spankbang.com/5bicn/video/impress+me
 import jrVid from "../videos/jrVid.mp4"; // https://spankbang.com/6wrs1/video/wank+class+pt1
 import ftVid from "../videos/ftVid.mp4"; // https://spankbang.com/60w2y/video/sdfsfsfs
-
-
-
+import viVid from "../videos/viVid.mp4"; // https://spankbang.com/5owvn/video/extracurricular+activities
+import caVid from "../videos/caVid.mp4"; // https://spankbang.com/8gy9k/video/punishment+joi
+import ivVid from "../videos/ivVid.mp4"; // https://wankitnow.com/videos/ivy-one-on-one-tutoring
 
 kaboom({
   background: [105, 105, 105]
@@ -57,6 +60,9 @@ loadSprite("axajay", ajImage)
 loadSprite("sapphireblue", sbImage)
 loadSprite("jayerose", jrImage)
 loadSprite("fayetaylor", ftImage)
+loadSprite("violet", viImage)
+loadSprite("charlieatwell", caImage)
+loadSprite("ivy", ivImage)
 
 let charismaPoints = 0;
 
@@ -64,12 +70,12 @@ scene("main", (levelIdx) => {
   const levels = [
     [
       "---------",
-      "-000_000-",
+      "β000_000-",
       "-0000000-",
       "-000c0001",
       "-0000000-",
       "-0000000-",
-      "-0000000-",
+      "-0000000δ",
       "20000000-",
       "-00000003",
       "-0000000-",
@@ -132,7 +138,7 @@ scene("main", (levelIdx) => {
       "---------------",
       "-dd000Uw0000dd-",
       "-00000ddd00000-",
-      "-00000u0c00000-",
+      "-00000u0c00000Γ",
       "50000000000000-",
       "---------------",
     ],
@@ -172,6 +178,34 @@ scene("main", (levelIdx) => {
       "-00v0f0d-",
       "-000000d-",
       "-v00v00v-",
+      "---------",
+    ],
+    [
+      "---------",
+      "-000I000-",
+      "-00ddd00|",
+      "-0c0i0c0-",
+      "-0000000-",
+      "-0c0c0c0-",
+      "-0000000-",
+      "---------",
+    ],
+    [
+      "-------------",
+      "-dd000H000dd-",
+      "-0000ddd0000-",
+      "600000h00000-",
+      "-00000000000-",
+      "-------------",
+    ],
+    [
+      "---------",
+      "-00000d0-",
+      "-000000Y-",
+      "-00c0y00-",
+      "|0000000-",
+      "-0c0c0c0-",
+      "-0000000-",
       "---------",
     ],
   ]
@@ -440,6 +474,69 @@ scene("main", (levelIdx) => {
         area(),
         "special_chair",
         { vid: ftVid, timestamp1: 8, timestamp2: 424, thresh1: 60, irrMsg: "All I asked was for you to tidy! (you need 60 charisma)", thresh2: 90 },
+      ],
+
+      "β": () => [
+        sprite("door"),
+        area(),
+        body({ isStatic: true }),
+        "door",
+        { idx: 11 },
+        ],
+      "I": () => [
+        sprite("violet"),
+        area(),
+        body({ isStatic: true }),
+        "character",
+        { msg: "Ah, you're here! Take a seat." },
+      ],
+      "i": () => [
+        sprite("chair"),
+        area(),
+        "special_chair",
+        { vid: viVid, timestamp1: 7, timestamp2: 317.3, thresh1: 10, irrMsg: "Thank you for staying after school. (you need 10 charisma)", thresh2: 40 },
+      ],
+
+      "Γ": () => [
+        sprite("door"),
+        area(),
+        body({ isStatic: true }),
+        "door",
+        { idx: 12 },
+        ],
+      "H": () => [
+        sprite("charlieatwell"),
+        area(),
+        body({ isStatic: true }),
+        "character",
+        { msg: "Sit down. You are in big trouble." },
+      ],
+      "h": () => [
+        sprite("chair"),
+        area(),
+        "special_chair",
+        { vid: caVid, timestamp1: 4.7, timestamp2: 412.2, thresh1: 30, irrMsg: "Thank you for staying after school. (you need 30 charisma)", thresh2: 60 },
+      ],
+
+      "δ": () => [
+        sprite("door"),
+        area(),
+        body({ isStatic: true }),
+        "door",
+        { idx: 13 },
+        ],
+      "Y": () => [
+        sprite("ivy"),
+        area(),
+        body({ isStatic: true }),
+        "character",
+        { msg: "Oh, I'm glad you're hear!" },
+      ],
+      "y": () => [
+        sprite("chair"),
+        area(),
+        "special_chair",
+        { vid: ivVid, timestamp1: 7.5, timestamp2: 600, thresh1: 50, irrMsg: "Thank you for coming in. (you need 50 charisma)", thresh2: 80 },
       ],
     }
   })
